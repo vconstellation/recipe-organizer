@@ -1,7 +1,9 @@
 package com.recorg.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,18 +43,21 @@ public class User {
 	@JoinColumn(name="user_id", nullable=true)
 	private List<Product> products;
 	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+	private List<Recipe> recipes;
+	
 	public User() {
 		
 	}
 
 	public User(String firstName, String lastName, String nickname, String email, String pass) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.nickname = nickname;
 		this.email = email;
 		this.pass = pass;
 	}
+
 
 	public int getId() {
 		return id;
@@ -117,8 +122,22 @@ public class User {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-	
-	
-	
 
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+	
+	public void addRecipe(Recipe recipe) {
+		if(recipes == null) {
+			recipes = new ArrayList<>();
+		}
+		
+		recipes.add(recipe);
+		
+		recipe.setUser(this);
+	}
 }

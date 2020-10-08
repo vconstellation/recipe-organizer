@@ -8,9 +8,9 @@
 
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/hbstudent?useSSL=false&amp;serverTimezone=UTC</property>
-        <property name="connection.username">hbstudent</property>
-        <property name="connection.password">hbstudent</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/recipe_org_dc?useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="connection.username">recipe_org_su</property>
+        <property name="connection.password">mo29qwTK!</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>
@@ -23,6 +23,9 @@
 
 		<!-- Set the current session context -->
 		<property name="current_session_context_class">thread</property>
+		
+		<!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">update</property>
  
     </session-factory>
 

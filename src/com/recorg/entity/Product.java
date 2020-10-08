@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -38,9 +41,17 @@ public class Product {
 	@Column(name="is_meat")
 	private boolean isMeat;
 	
+	@ManyToMany
+	@JoinTable(
+			name="recipe_product",
+			joinColumns = @JoinColumn(name="product_id"),
+			inverseJoinColumns = @JoinColumn(name = "recipe_id"))
+	private List<Recipe> recipes;
+	
 	@OneToMany(cascade=CascadeType.REMOVE, fetch=FetchType.LAZY)
 	@JoinColumn(name="nutrition_id")
 	private List<Nutrition> nutritions;
+	
 	
 	public Product() {
 		
