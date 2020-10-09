@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -45,6 +46,12 @@ public class Recipe {
 			joinColumns = @JoinColumn(name="recipe_id"),
 			inverseJoinColumns = @JoinColumn(name = "product_id"))
 	private List<Product> products;
+	
+	@OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<RecipeStep> recipeSteps;
+	
+	@OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<RecipeRating> recipeRatings;
 	
 	public Recipe() {
 		
@@ -87,12 +94,65 @@ public class Recipe {
 		this.createdAt = createdAt;
 	}
 	
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	public List<RecipeStep> getRecipeSteps() {
+		return recipeSteps;
+	}
+
+	public void setRecipeSteps(List<RecipeStep> recipeSteps) {
+		this.recipeSteps = recipeSteps;
+	}
+
+	public List<RecipeRating> getRecipeRatings() {
+		return recipeRatings;
+	}
+
+	public void setRecipeRatings(List<RecipeRating> recipeRatings) {
+		this.recipeRatings = recipeRatings;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void addProduct(Product product) {
 		if(products == null) {
-			products = new ArrayList<>();
+			products = new ArrayList<Product>();
 		}
 		
 		products.add(product);
 	}
+	
+	public void addRecipeStep(RecipeStep recipeStep) {
+		if(recipeSteps == null) {
+			recipeSteps = new ArrayList<RecipeStep>();
+		}
 		
+		recipeSteps.add(recipeStep);
+	}
+	
+	public void addRecipeRating(RecipeRating recipeRating) {
+		if(recipeRatings == null) {
+			recipeRatings = new ArrayList<RecipeRating>();
+		}
+		
+		recipeRatings.add(recipeRating);
+	}
+
+	@Override
+	public String toString() {
+		return "Recipe [id=" + id + ", user=" + user + ", name=" + name + ", numberOfIngredients=" + numberOfIngredients
+				+ ", createdAt=" + createdAt + ", products=" + products + ", recipeSteps=" + recipeSteps + "]";
+	}		
 }

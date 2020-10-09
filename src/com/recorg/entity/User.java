@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="user")
 public class User {
@@ -45,6 +46,9 @@ public class User {
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
 	private List<Recipe> recipes;
+	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<RecipeRating> recipeRatings;
 	
 	public User() {
 		
@@ -139,5 +143,13 @@ public class User {
 		recipes.add(recipe);
 		
 		recipe.setUser(this);
+	}
+	
+	public void addRecipeRating(RecipeRating recipeRating) {
+		if(recipeRatings == null) {
+			recipeRatings = new ArrayList<RecipeRating>();
+		}
+		
+		recipeRatings.add(recipeRating);
 	}
 }
