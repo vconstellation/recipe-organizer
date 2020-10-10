@@ -9,7 +9,7 @@ import com.recorg.entity.Product;
 import com.recorg.entity.Recipe;
 import com.recorg.entity.RecipeRating;
 import com.recorg.entity.RecipeStep;
-import com.recorg.entity.User;
+import com.recorg.entity.RecipeOrgUser;
 
 public class Main {
 
@@ -21,14 +21,13 @@ public class Main {
 				.addAnnotatedClass(Recipe.class)
 				.addAnnotatedClass(RecipeRating.class)
 				.addAnnotatedClass(RecipeStep.class)
-				.addAnnotatedClass(User.class)
+				.addAnnotatedClass(RecipeOrgUser.class)
 				.buildSessionFactory();
 
 			Session session = factory.getCurrentSession();
 			try {
 					session.beginTransaction();
 					session.getTransaction().commit();
-
 				}
 				catch (Exception e) {
 					e.printStackTrace();

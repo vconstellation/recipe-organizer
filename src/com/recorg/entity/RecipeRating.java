@@ -28,7 +28,7 @@ public class RecipeRating {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User user;
+	private RecipeOrgUser recipeOrgUser;
 	
 	public RecipeRating() {
 		
@@ -62,17 +62,17 @@ public class RecipeRating {
 		this.recipe = recipe;
 	}
 
-	public User getUser() {
-		return user;
+	public RecipeOrgUser getreRecipeOrgUser() {
+		return recipeOrgUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setRecipeOrgUser(RecipeOrgUser recipeOrgUser) {
+		this.recipeOrgUser = recipeOrgUser;
 	}
 
 	@Override
 	public String toString() {
-		return "RecipeRating [id=" + id + ", rating=" + rating + ", recipe=" + recipe + ", user=" + user + "]";
+		return "RecipeRating [id=" + id + ", rating=" + rating + ", recipe=" + recipe + ", recipeOrgUser=" + recipeOrgUser + "]";
 	}
 		
 }

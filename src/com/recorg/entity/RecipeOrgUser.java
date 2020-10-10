@@ -16,8 +16,8 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="user")
-public class User {
+@Table(name="recipe_org_user")
+public class RecipeOrgUser {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -44,17 +44,17 @@ public class User {
 	@JoinColumn(name="user_id", nullable=true)
 	private List<Product> products;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "recipeOrgUser", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
 	private List<Recipe> recipes;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "recipeOrgUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RecipeRating> recipeRatings;
 	
-	public User() {
+	public RecipeOrgUser() {
 		
 	}
 
-	public User(String firstName, String lastName, String nickname, String email, String pass) {
+	public RecipeOrgUser(String firstName, String lastName, String nickname, String email, String pass) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.nickname = nickname;

@@ -29,7 +29,7 @@ public class Recipe {
 	
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User user;
+	private RecipeOrgUser recipeOrgUser;
 	
 	@Column(name = "name")
 	private String name;
@@ -62,12 +62,12 @@ public class Recipe {
 		this.numberOfIngredients = numberOfIngredients;
 	}
 
-	public User getUser() {
-		return user;
+	public RecipeOrgUser getUser() {
+		return recipeOrgUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(RecipeOrgUser recipeOrgUser) {
+		this.recipeOrgUser = recipeOrgUser;
 	}
 
 	public String getName() {
@@ -152,7 +152,7 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", user=" + user + ", name=" + name + ", numberOfIngredients=" + numberOfIngredients
+		return "Recipe [id=" + id + ", recipeOrgUser=" + recipeOrgUser + ", name=" + name + ", numberOfIngredients=" + numberOfIngredients
 				+ ", createdAt=" + createdAt + ", products=" + products + ", recipeSteps=" + recipeSteps + "]";
 	}		
 }
