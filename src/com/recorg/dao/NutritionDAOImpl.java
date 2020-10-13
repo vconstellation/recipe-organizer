@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.recorg.entity.Nutrition;
+import com.recorg.entity.Recipe;
 
 @Repository
 public class NutritionDAOImpl implements NutritionDAO {
@@ -43,7 +44,7 @@ public class NutritionDAOImpl implements NutritionDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query theQuery = currentSession.createQuery("delete from nutrition where id=:nutritionId");
+		Query<Recipe> theQuery = currentSession.createQuery("delete from nutrition where id=:nutritionId");
 		
 		theQuery.setParameter("nutritionId", theId);
 		
