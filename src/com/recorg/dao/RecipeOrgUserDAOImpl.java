@@ -22,7 +22,7 @@ public class RecipeOrgUserDAOImpl implements RecipeOrgUserDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<RecipeOrgUser> theQuery = currentSession.createQuery("from recipe_org_user", RecipeOrgUser.class);
+		Query<RecipeOrgUser> theQuery = currentSession.createQuery("FROM recipe_org_user", RecipeOrgUser.class);
 		
 		List<RecipeOrgUser> theUsers = theQuery.getResultList();
 		
@@ -42,7 +42,7 @@ public class RecipeOrgUserDAOImpl implements RecipeOrgUserDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query theQuery = currentSession.createQuery("delete from recipe_org_user where id=:recipeOrgUserId");
+		Query theQuery = currentSession.createQuery("DELETE FROM recipe_org_user WHERE id=:recipeOrgUserId");
 		
 		theQuery.setParameter("recipeOrgUserId", theId);
 		
@@ -57,6 +57,33 @@ public class RecipeOrgUserDAOImpl implements RecipeOrgUserDAO {
 		RecipeOrgUser theRecipeOrgUser = currentSession.get(RecipeOrgUser.class, theId);
 		
 		return theRecipeOrgUser;
+	}
+
+	@Override
+	public List<RecipeOrgUser> getPaginatedRecipeOrgUsers(int min, int max) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<RecipeOrgUser> theQuery = currentSession.createQuery("FROM recipe_org_user");
+		
+		theQuery.setFirstResult(min);
+		theQuery.setMaxResults(max);
+		
+		List<RecipeOrgUser> recipeOrgUsers = theQuery.getResultList();
+		
+		return recipeOrgUsers;
+	}
+
+	@Override
+	public Long getTotalNumber() {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Long> theQuery = currentSession.createQuery("SELECT COUNT (r.id) FROM recipe_org_user r");
+		
+		Long totalNumber = theQuery.uniqueResult();
+		
+		return totalNumber;
 	}
 
 }

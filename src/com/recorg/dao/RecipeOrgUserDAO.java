@@ -14,4 +14,8 @@ public interface RecipeOrgUserDAO {
 
 	public RecipeOrgUser getRecipeOrgUser(int theId);
 
+	public List<RecipeOrgUser> getPaginatedRecipeOrgUsers(int min, int max);
+
+	public Long getTotalNumber();
+
 }

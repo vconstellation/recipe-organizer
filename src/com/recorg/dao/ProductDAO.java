@@ -14,4 +14,8 @@ public interface ProductDAO {
 
 	public Product getProduct(int theId);
 
+	public List<Product> getPaginatedProducts(int min, int max);
+
+	public Long getTotalNumber();
+
 }

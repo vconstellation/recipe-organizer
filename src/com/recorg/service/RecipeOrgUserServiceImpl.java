@@ -42,4 +42,18 @@ public class RecipeOrgUserServiceImpl implements RecipeOrgUserService {
 		return recipeOrgUserDAO.getRecipeOrgUser(theId);
 	}
 
+	@Override
+	@Transactional
+	public List<RecipeOrgUser> getPaginatedRecipeOrgUsers(int min, int max) {
+		
+		return recipeOrgUserDAO.getPaginatedRecipeOrgUsers(min, max);
+	}
+
+	@Override
+	@Transactional
+	public Long getTotalNumber() {
+		
+		return recipeOrgUserDAO.getTotalNumber();
+	}
+
 }

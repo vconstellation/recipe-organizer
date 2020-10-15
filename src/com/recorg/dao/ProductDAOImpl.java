@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.recorg.entity.Product;
+import com.recorg.entity.RecipeStep;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
@@ -22,7 +23,7 @@ public class ProductDAOImpl implements ProductDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Product> theQuery = currentSession.createQuery("from product", Product.class);
+		Query<Product> theQuery = currentSession.createQuery("FROM product", Product.class);
 		
 		List<Product> theProducts = theQuery.getResultList();
 		
@@ -42,7 +43,7 @@ public class ProductDAOImpl implements ProductDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query theQuery = currentSession.createQuery("delete from product where id=:productId");
+		Query theQuery = currentSession.createQuery("DELETE FROM product WHERE id=:productId");
 		
 		theQuery.setParameter("productId", theId);
 		
@@ -57,6 +58,33 @@ public class ProductDAOImpl implements ProductDAO {
 		Product theProduct = currentSession.get(Product.class, theId);
 		
 		return theProduct;
+	}
+
+	@Override
+	public List<Product> getPaginatedProducts(int min, int max) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Product> theQuery = currentSession.createQuery("FROM product");
+		
+		theQuery.setFirstResult(min);
+		theQuery.setMaxResults(max);
+		
+		List<Product> products = theQuery.getResultList();
+		
+		return products;		
+	}
+
+	@Override
+	public Long getTotalNumber() {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Long> theQuery = currentSession.createQuery("SELECT COUNT (r.id) FROM recipe r");
+		
+		Long totalNumber = theQuery.uniqueResult();
+		
+		return totalNumber;
 	}
 
 }

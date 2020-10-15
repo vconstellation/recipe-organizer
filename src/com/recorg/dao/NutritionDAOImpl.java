@@ -23,7 +23,7 @@ public class NutritionDAOImpl implements NutritionDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Nutrition> theQuery = currentSession.createQuery("from nutrition", Nutrition.class);
+		Query<Nutrition> theQuery = currentSession.createQuery("FROM nutrition", Nutrition.class);
 		
 		List<Nutrition> theNutrition = theQuery.getResultList();
 		
@@ -44,7 +44,7 @@ public class NutritionDAOImpl implements NutritionDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Recipe> theQuery = currentSession.createQuery("delete from nutrition where id=:nutritionId");
+		Query<Recipe> theQuery = currentSession.createQuery("DELETE FROM nutrition WHERE id=:nutritionId");
 		
 		theQuery.setParameter("nutritionId", theId);
 		

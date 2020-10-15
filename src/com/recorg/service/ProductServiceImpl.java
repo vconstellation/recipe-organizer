@@ -42,4 +42,18 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.getProduct(theId);
 	}
 
+	@Override
+	@Transactional
+	public List<Product> getPaginatedProducts(int min, int max) {
+		
+		return productDAO.getPaginatedProducts(min, max);
+	}
+
+	@Override
+	@Transactional
+	public Long getTotalNumber() {
+		
+		return productDAO.getTotalNumber();
+	}
+
 }
