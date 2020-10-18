@@ -8,13 +8,13 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.recorg.config.HibernateUtil;
 import com.recorg.entity.RecipeStep;
 
 @Repository
 public class RecipeStepDAOImpl implements RecipeStepDAO {
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 	@Override
 	public List<RecipeStep> getRecipeSteps() {

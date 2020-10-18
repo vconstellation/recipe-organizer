@@ -8,13 +8,13 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.recorg.config.HibernateUtil;
 import com.recorg.entity.RecipeRating;
 
 @Repository
 public class RecipeRatingDAOImpl implements RecipeRatingDAO {
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 	@Override
 	public List<RecipeRating> getRecipeRatings() {

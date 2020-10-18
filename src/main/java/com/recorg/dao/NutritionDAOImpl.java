@@ -9,14 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.recorg.config.HibernateUtil;
 import com.recorg.entity.Nutrition;
 import com.recorg.entity.Recipe;
 
 @Repository
 public class NutritionDAOImpl implements NutritionDAO {
 	
-	@Autowired
-	private SessionFactory sessionFactory; 
+	
+	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); 
 
 	@Override
 	public List<Nutrition> getNutritions() {

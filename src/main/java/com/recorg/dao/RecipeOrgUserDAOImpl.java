@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.recorg.config.HibernateUtil;
 import com.recorg.entity.RecipeOrgUser;
 
 @Repository
 public class RecipeOrgUserDAOImpl implements RecipeOrgUserDAO {
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 	@Override
 	public List<RecipeOrgUser> getRecipeOrgUsers() {

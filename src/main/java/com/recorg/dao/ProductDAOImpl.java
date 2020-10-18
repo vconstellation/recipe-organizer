@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.recorg.config.HibernateUtil;
 import com.recorg.entity.Product;
 import com.recorg.entity.RecipeStep;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 	@Override
 	public List<Product> getProducts() {
