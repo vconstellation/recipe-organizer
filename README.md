@@ -9,7 +9,7 @@ Created with the intention of learning Spring, the project is not actively maint
 * Java SE 15.0
 * Spring Boot 2.3.4
 * Maven 4.0
-* PotgreSQL 13.0
+* PostgreSQL 13.0
 
 ## Source
 
